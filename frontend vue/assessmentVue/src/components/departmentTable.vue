@@ -3,7 +3,7 @@
     <button class="open-button" @click="openForm()" ></button>
     <div   class="form-popup" id="myForm">
     <form @submit.prevent >
-        <input type="text" placeholder="Enter the department id " v-model="departmentId" >
+        <!-- <input type="text" placeholder="Enter the department id " v-model="departmentId" > -->
         <input type="text" placeholder="Enter the department name " v-model="departmentName" >
        
          <!-- <div class="deptNameError">{{ errors.departmentName }}</div> -->

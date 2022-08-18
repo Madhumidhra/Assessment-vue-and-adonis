@@ -34,16 +34,16 @@ export default createRouter({
       name:'tableDisplayDept',
       component:departmentTable,
     },
-       {
-        path: '/filterDisplay',
-        name:'filterdisplaydept',
-        component:filterDisplay,
-       },
-       {
-        path: '/filterDisplayEmployee',
-        name:'filterdisplaydept',
-        component:filterDisplayEmployee,
-       },
+    {
+      path:'/filterDisplay',
+      name:'filterdisplaydept',
+      component:filterDisplay,
+    },
+    {
+    path: '/filterDisplayEmployee',
+    name:'filterdisplaydept',
+    component:filterDisplayEmployee,
+    },
    
   ],
  

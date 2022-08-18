@@ -1,16 +1,7 @@
 <template >
     <h1>Category</h1>
     <div>
-        <!-- <label >departmentName:</label>
-        <input type="text" placeholder="Enter your department Name " v-model="name">
-         <br> -->
-         <!-- <label >Order:</label>
-         <input type="text" placeholder="Enter your order name " v-model="order"> 
-        <select>
-            <option>Ascending order</option>
-            <option>Decending order</option>
-        </select> -->
-        <table id = "customers"  >
+        <table id = "customers" >
         <tr>
           <th >departmentId</th>
           <th >departmentName</th>

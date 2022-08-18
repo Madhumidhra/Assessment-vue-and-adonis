@@ -9,11 +9,6 @@
       <tr v-for="(entry, i) in selectDepartmentData" :key="i">
          <td>{{ entry.id }}</td>
          <td>{{ entry.name }}</td>
-         <!-- <td>{{ entry.dob}}</td>
-         <td>{{ entry.doj }}</td>
-         <td>{{ entry.email }}</td>
-         <td>{{ entry.phone }}</td>
-         <td>{{ entry.department_id }}</td> -->
 
         </tr>
     </table>

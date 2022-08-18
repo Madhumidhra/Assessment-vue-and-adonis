@@ -1,8 +1,19 @@
 <template >
     <h1>EMPLOYEE DETAILS</h1>
+<br><br>
+<div>
+       <label>Choose a department</label>
+         <select class="selectHtml"    v-model="filterDeptName" @click="filterEmployeesdName()">
+         <option class="select" v-for="department in selectDepartmentData" :value="department.id" :key="department.name">
+         {{ department.name}}
+    </option>
+  </select>
+  <br><br>
+
     <button class="open-button" @click="openForm()"></button>
     <div   class="form-popup" id="myForm">
     <form @submit.prevent >
+
     <input type="number" placeholder="Enter your Employee Id " v-model="employeeId">
       <input type="text" placeholder="Enter your Employee Name " v-model="employeeName">
       <input type="date" placeholder="Enter your Employee Name " v-model="dob">
@@ -12,12 +23,14 @@
       <label >departmentId:</label>
         <input v-model="departmentId" placeholder="Enter your department Id " >
         <br>
-        <button v-if="updateButton==true" type="submit" class="btn" @click="insert()" >SUBMIT</button><br><br>
-        <button v-if="updateButton==false" type="submit" @click="updateTable(updateIndex)" class="btn btn-dark" >Update </button>
-        <button type="button" class="btn cancel" @click="closeForm()">Close</button>
+        <button v-if="updateButton" type="submit" class="btn" @click="insert()" >SUBMIT</button>
+        <button v-else="updateButton" type="submit" @click="updateTable(updateIndex)" class="btn btn-dark" >Update </button>
+        <button type="button" class="btn
+         cancel" @click="closeForm()">Close</button>
         <br>
     </form>
     <br><br>
+    </div>
     </div>
     <br><br>
      <table id = "customers"  >
@@ -53,6 +66,7 @@
   </template>
 <script>
 import axios from "axios";
+import moment from "moment";
 export default {
   data(){
     return{
@@ -64,6 +78,7 @@ export default {
     departmentId:"",
     myForm:"",
     updateButton:true,
+    selectDepartmentData : [],
     updateIndex:"",
     updateData:"",
     valid: true,
@@ -79,9 +94,27 @@ export default {
  this.instance.get('/assessmentEmployees/selectEmployee').then((result) => {
       this.selectEmployeeData = result.data;
  })
+
+  this.instance.get('/assessmentDepartments/selectDepartment').then((result) => {
+      this.selectDepartmentData = result.data;
+ })
+ 
+ 
+
 },
+
+
 methods:{
  
+
+ async filterEmployeesdName(){
+  
+   const listData =  await this.instance.get("/assessmentEmployees/selectEmployee")
+   this.selectEmployeeData = listData.data.filter(result =>
+         {
+             return  result.department_id == this.filterDeptName;
+        })
+    },
     reloadpage(){
        window.location.reload();
     },
@@ -93,13 +126,16 @@ select(){
 revertTable(i,updateId){
       this.employeeId = this.selectEmployeeData[i].id
       this.employeeName = this.selectEmployeeData[i].name
-      this.dob = this.selectEmployeeData[i].dob
-      this.doj = this.selectEmployeeData[i].doj
+      const dateOfBirth = moment.utc(this.selectEmployeeData[i].dob).format('YYYY-MM-DD')
+      console.log(dateOfBirth)
+      this.dob = dateOfBirth
+      const dateOfJoining = moment.utc(this.selectEmployeeData[i].doj).format('YYYY-MM-DD')
+      this.doj = dateOfJoining
      this.email = this.selectEmployeeData[i].email
       this.phone = this.selectEmployeeData[i].phone
       this.departmentId = this.selectEmployeeData[i].department_id
       this.openForm()
-      this.updateButton = false
+      //this.updateButton = false
       this.updateIndex = updateId
 },
 updateTable(updateIndex){
@@ -121,7 +157,7 @@ updateTable(updateIndex){
    this.reloadpage()
     })
 },
-async deleteId(deleteEmployeeId){
+ deleteId(deleteEmployeeId){
     alert("are u sure want to delete")
     this.instance.delete("/assessmentEmployees/deleteEmployee" ,{ data: {id: deleteEmployeeId} }).then((result) => {
     const deleteData = result.data;

@@ -7,9 +7,9 @@ export default class assessmentEmployees extends BaseModel {
   @column()
   public name: string
   @column()
-  public dob: Date
+  public dob: DateTime
   @column()
-  public doj: Date
+  public doj: DateTime
   @column()
   public email: string
   @column()

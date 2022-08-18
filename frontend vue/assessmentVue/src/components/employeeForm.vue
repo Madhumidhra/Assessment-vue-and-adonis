@@ -28,7 +28,7 @@
     </option>
   </select>
         <br>
-        <button @click="insert()" >Submit </button>
+        <button @click="insert()">Submit </button>
         <br>
         </div>
   </template>
