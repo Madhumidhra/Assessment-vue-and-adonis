@@ -1,0 +1,23 @@
+create trigger variable
+after insert or update or delete 
+on public.assessment_employees
+for each row
+execute procedure  trigger_function();(action,performed_at) values('inserted successfully',now());
+elsif (TG_OP = 'UPDATE') THEN
+INSERT INTO public.assessment_logs(action,performed_at) values('updated successfully',now());
+elsif (TG_OP = 'DELETE') THEN
+INSERT INTO public.assessment_logs(action,performed_at) values('deleted successfully',now());
+end if;
+return null;
+end;
+$log$ 
+language plpgsql;
+
+
+
+
+create trigger variable
+after insert or update or delete 
+on public.assessment_employees
+for each row
+execute procedure  trigger_function();
