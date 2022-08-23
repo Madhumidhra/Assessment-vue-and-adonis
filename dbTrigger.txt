@@ -1,23 +1,23 @@
-create trigger variable
-after insert or update or delete 
-on public.assessment_employees
-for each row
-execute procedure  trigger_function();(action,performed_at) values('inserted successfully',now());
-elsif (TG_OP = 'UPDATE') THEN
-INSERT INTO public.assessment_logs(action,performed_at) values('updated successfully',now());
-elsif (TG_OP = 'DELETE') THEN
-INSERT INTO public.assessment_logs(action,performed_at) values('deleted successfully',now());
-end if;
-return null;
-end;
-$log$ 
-language plpgsql;
+CREATE OR REPLACE FUNCTION information() RETURNS TRIGGER 
+AS
+$logs$
+BEGIN
+IF (TG_OP = 'INSERT') THEN
+    INSERT INTO public.assessment_logs(action,performed_at) VALUES ('Insert performed',now());
+ELSEIF (TG_OP = 'UPDATE') THEN
+    INSERT INTO public.assessment_logs(action,performed_at) VALUES ('Update performed',now());
+ELSEIF (TG_OP = 'DELETE') THEN
+    INSERT INTO public.assessment_logs(action,performed_at) VALUES ('Delete performed',now());
+END IF;
+RETURN NULL;
+END;
+$logs$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER action_trigger   
+AFTER INSERT OR UPDATE OR DELETE ON public.assessment_employees
+FOR EACH ROW
+EXECUTE PROCEDURE information();
 
 
-
-
-create trigger variable
-after insert or update or delete 
-on public.assessment_employees
-for each row
-execute procedure  trigger_function();
+);
