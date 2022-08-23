@@ -135,7 +135,7 @@ revertTable(i,updateId){
       this.phone = this.selectEmployeeData[i].phone
       this.departmentId = this.selectEmployeeData[i].department_id
       this.openForm()
-      //this.updateButton = false
+      this.updateButton = false
       this.updateIndex = updateId
 },
 updateTable(updateIndex){
