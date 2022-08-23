@@ -158,12 +158,18 @@ updateTable(updateIndex){
     })
 },
  deleteId(deleteEmployeeId){
-    alert("are u sure want to delete")
+    
+    if((confirm("are u sure want to delete")))
+    {
     this.instance.delete("/assessmentEmployees/deleteEmployee" ,{ data: {id: deleteEmployeeId} }).then((result) => {
     const deleteData = result.data;
     //this.select()
     this.reloadpage()
     })
+ }
+ else{
+  this.reloadpage()
+ }
    
 },
    

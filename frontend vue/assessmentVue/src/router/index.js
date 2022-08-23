@@ -4,7 +4,7 @@ import employeeForm from '../components/employeeForm.vue'
 import employeeTable from '../components/employeeTable.vue'
 import departmentForm from '../components/departmentForm.vue'
 import departmentTable from '../components/departmentTable.vue'
-import filterDisplay from '../components/filterDisplay.vue'
+import filterDisplayDept from '../components/filterDisplayDept.vue'
 import filterDisplayEmployee from '../components/filterDisplayEmployee.vue'
 
 
@@ -35,9 +35,9 @@ export default createRouter({
       component:departmentTable,
     },
     {
-      path:'/filterDisplay',
+      path:'/filterDisplayDept',
       name:'filterdisplaydept',
-      component:filterDisplay,
+      component:filterDisplayDept,
     },
     {
     path: '/filterDisplayEmployee',

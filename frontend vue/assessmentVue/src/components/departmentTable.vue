@@ -93,28 +93,20 @@ updateTable(updateIndex){
     })
 },
 deleteId(deleteDepartmentId){
-    this.instance.delete("/assessmentDepartments/deleteDepartment" ,{ data: { id: deleteDepartmentId} }).then((result) => {
+  if((confirm("are u sure want to delete")))
+{
+this.instance.delete("/assessmentDepartments/deleteDepartment" ,{ data: { id: deleteDepartmentId} }).then((result) => {
       const deleteData = result.data;
-     alert("are u sure want to delete")
       this.select()
-    })
+    })}
+else{
+  
+}
+
+
 },
    
-//    insert() {
-//       //this.errors = {}
-//       //const validName = this.validateName(this.departmentName);
-//       //this.errors.departmentName = validName.error;
-//     // if (validName.valid) {
-//     this.formData ={
-//     dept_name:this.departmentName
-//       }
-//     this.instance.post('/assessDeptMigration/insertAssessDept',this.formData).then((result) => {
-//       this.insertData = result.data;
-//       console.log(this.insertData)
-//       this.clearForm();
-//        this.select()
-//     })
-//   },
+
  openForm() {
   document.getElementById("myForm").style.display = "block";
 },

@@ -41,11 +41,11 @@ export default {
 },
   methods:{
     orderDeptA(){
- this.instance.get('/assessmentDepartments/ascendingOrder').then((result) => {
+ this.instance.get('/assessmentDepartments/ascendingOrderDept').then((result) => {
       this.selectDepartmentData = result.data;
  })},
  orderDeptD(){
- this.instance.get('/assessmentDepartments/decendingOrder').then((result) => {
+ this.instance.get('/assessmentDepartments/decendingOrderDept').then((result) => {
       this.selectDepartmentData = result.data;
  })}
      
